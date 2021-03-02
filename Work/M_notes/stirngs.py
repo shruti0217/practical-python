@@ -55,9 +55,9 @@ print(j.endswith('e'))
 
 #k = 'Every time we perform some operation a new string is created'
 #k = 'Heck'
-#j = j.join('12345')  #joins a list of string 
+j = '-'.join(j)  #joins a list of string 
                 
-#print(j)
+print(j)
 
 #---------------------------split()------------------------
 #splits string into a list of substrings using delimiter :
