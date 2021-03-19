@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # report.py
 #
 # Exercise 2.4
@@ -27,7 +29,9 @@ def Total_cost(info_list,head):
     total_cost = 0.0
     #for i in info_list:
     for i in info_list:
-        total_cost += i[head[1]]*i[head[2]]
+        #total_cost += i[head[1]]*i[head[2]]
+        total_cost += i['shares'] * i['price'] 
+
     return total_cost
 
 '''
@@ -79,10 +83,15 @@ def present_value_of_port(initial,new_prices):
     #lets first create a dic which will have the data of name and no_of shares in the portfolio with name share pair
     dic = {}
     for i in initial:
-        print(i['name'],i['shares'])
+        #print(i['name'],i['shares'])
         dic[i['name']] = i['shares']
     print(dic)
     p_total = 0.0
+    for i in dic.keys(): # returns stock names
+        #print(i)
+        p_total += dic[i] * new_prices[i]
+    print(p_total)
+    return p_total
     '''
     set_1  = dic.keys()
     print(set_1)
@@ -94,10 +103,21 @@ def present_value_of_port(initial,new_prices):
         print(dic[i],new_prices[i])
         p_total += dic[i] * new_prices[i]    
     '''
-    for i in dic.keys():
-        p_total += dic[i] * new_prices[i]
-    print(p_total)
-    return p_total
+
+
+
+
+def make_report(dic_port,list_stocks):
+    result = []
+    change = 0
+    print("Name\t\tshare\t\tprice\t\tchange")
+    print("-------\t\t-------\t\t-------\t\t---------")
+    for i in dic_port:
+        change =  list_stocks[i['name']] - i['price'] 
+        result.append((i['name'],i['shares'],i['price'],change))
+    return result
+
+
 
 if __name__ == "__main__":
     # I.Part one:
@@ -107,13 +127,13 @@ if __name__ == "__main__":
     #2 format the data from the file in given format
     #done
     #3 calulate the total or perform the desired op
-    port_value = Total_cost(file_con,head)
+    port_value = Total_cost(file_con,head) # no need to pass head
     print(port_value)
 
     name,share,price = file_con[1].items()
     
     #print(name)
-    pprint(file_con)
+    #pprint(file_con)
     #print(file_con[1]['name'])
     #print(head)
     # II.part two:
@@ -132,3 +152,9 @@ if __name__ == "__main__":
         print(f"Gain  ")
     else :
         print("Loss")
+    
+    #3. Make a report that takes list of stocks and dictionary of prices as input 
+    #and returns a list of tuples containing rows as (Name shares price change)
+    report = make_report(file_con,present_price)
+    for i in report:
+        print('%10s\t%10d\t%10.2f\t%10.2f'% i)
