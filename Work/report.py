@@ -25,7 +25,7 @@ def read_portfolio(path):
         print(lis)
         return (lis,head)
 
-def Total_cost(info_list,head):
+def Total_cost(info_list):
     total_cost = 0.0
     #for i in info_list:
     for i in info_list:
@@ -34,32 +34,10 @@ def Total_cost(info_list,head):
 
     return total_cost
 
-'''
-def format(file_con,head):
-    list = {}'''
-'''
-def transformi(i): # so funtions in py are always call by reference huh
-    
-    i[1] = int(i[1])
-    i[2] = float(i[2])
-
-'''
-'''
-def create_dic(line,head):
-    dic = {}
-    #print(head)
-    for i,j in zip(line,head):
-        dic[j] = i
-    return dic
-'''    
+   
 
 
-'''
-def return_header(file_con):
-    head = next(file_con)
-    return head
-throws value error 
-'''    
+   
 #this function reads from the file prices.csv and returns a dictionary of stock - value pair
 def read_prices(path):
     with open(path,mode = 'r') as file:
@@ -77,13 +55,18 @@ def read_prices(path):
     
         pprint(dic)
         return dic 
+
+
 #this function will calculate the present value of the portfolio where the initial will take in the 
 #the initial data of the portfolio and the new prices will take in the new values of stocks
 def present_value_of_port(initial,new_prices):
-    #lets first create a dic which will have the data of name and no_of shares in the portfolio with name share pair
+
+    #lets first create a dic which will have the data of name and 
+    # no_of shares in the portfolio with name share pair
+
     dic = {}
     for i in initial:
-        #print(i['name'],i['shares'])
+        
         dic[i['name']] = i['shares']
     print(dic)
     p_total = 0.0
@@ -92,17 +75,7 @@ def present_value_of_port(initial,new_prices):
         p_total += dic[i] * new_prices[i]
     print(p_total)
     return p_total
-    '''
-    set_1  = dic.keys()
-    print(set_1)
-    set_2 = new_prices.keys()
-    print(set_2)
-    set_3 = set_1 & set_2    # kinda useless coz it just returns set_1 right? damn
-    print(set_3)
-    for i in set_3:
-        print(dic[i],new_prices[i])
-        p_total += dic[i] * new_prices[i]    
-    '''
+    
 
 
 
@@ -127,15 +100,13 @@ if __name__ == "__main__":
     #2 format the data from the file in given format
     #done
     #3 calulate the total or perform the desired op
-    port_value = Total_cost(file_con,head) # no need to pass head
+    #port_value = Total_cost(file_con,head) # no need to pass head
+    port_value = Total_cost(file_con)
     print(port_value)
 
-    name,share,price = file_con[1].items()
     
-    #print(name)
-    #pprint(file_con)
-    #print(file_con[1]['name'])
-    #print(head)
+    
+    
     # II.part two:
 
     #1.read from the Data/prices.csv file and store the data in a dictionary with a name : value pair format
