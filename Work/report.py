@@ -21,7 +21,7 @@ def read_portfolio(path):
             #transformi(i)
             i[1] = int(i[1]) if i[1] !="" else 0
             i[2] = float(i[2]) if i[2] !="" else 0.0
-            lis.append(dict(zip(head,i)))   #it worked....but how...shit
+            lis.append(dict(zip(head,i)))   #it worked....but how...shit #now i know how 
         print(lis)
         return (lis,head)
 
@@ -55,6 +55,7 @@ def read_prices(path):
     
         pprint(dic)
         return dic 
+        #appending in dictionary
 
 
 #this function will calculate the present value of the portfolio where the initial will take in the 
